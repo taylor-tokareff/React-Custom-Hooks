@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import App from './App';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -17,17 +17,20 @@ describe('App component', () => {
     expect(ul).not.toBeEmptyDOMElement();
   });
 
-  it.skip('displays a characters details', async () => {
+  it('displays a characters details', async () => {
     render(
-      <MemoryRouter initialEntries={['/3']}>
+      <MemoryRouter initialEntries={['character/Bender']}>
         <App />
       </MemoryRouter>
     );
 
     screen.getByText('Loading...');
 
-    await screen.findByText('Bender');
-    await screen.findByText('I\'m a fraud.A poor, lazy, sexy, fraud.');
-    await screen.findByAltText('Bender');
+    return waitFor(() => {
+      const Bender = screen.queryAllByText('Bender');
+      expect(Bender[0]).not.toBeEmptyDOMElement();
+    });
+
+
   });
 });

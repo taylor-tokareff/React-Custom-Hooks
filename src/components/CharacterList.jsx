@@ -4,7 +4,7 @@ import Character from '../CharacterMain';
 
 const CharacterList = ({ characters }) => {
   const characterElements = characters.map((character) => (
-    <li key={character.id}>
+    <li key={character.id + character.quote}>
       <Character
         character={character.character}
         quote={character.quote}

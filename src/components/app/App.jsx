@@ -4,7 +4,7 @@ import FuturamaDetails from '../containers/FuturamaDetails';
 import Header from '../containers/Header';
 
 import {
-  BrowserRouter as Router,
+
   Route,
   Switch,
   Redirect
@@ -16,28 +16,28 @@ class App extends Component {
     return (
       <>
 
-        <Router>
 
-          <Header />
 
-          <Switch>
+        <Header />
 
-            <Route path="/" exact={true}
-              render={routerProps => (
-                <FuturamaCharacters {...routerProps} />
-              )}
-            />
+        <Switch>
 
-            <Route path="/character/:character" exact={true}
-              render={routerProps => (
-                <FuturamaDetails {...routerProps} />
-              )}
-            />
+          <Route path="/" exact={true}
+            render={routerProps => (
+              <FuturamaCharacters {...routerProps} />
+            )}
+          />
 
-            <Redirect to="/" />
+          <Route path="/character/:character" exact={true}
+            render={routerProps => (
+              <FuturamaDetails {...routerProps} />
+            )}
+          />
 
-          </Switch>
-        </Router>
+          <Redirect to="/" />
+
+        </Switch>
+
       </>
     );
   }
